@@ -119,7 +119,8 @@ async function handleUpdatePassword(updatedData) {
       <div class="mx-auto w-full max-w-4xl">
 
         <!-- Controls: Add New & Search -->
-        <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center w-full">
+         <div class="mb-4 flex flex-row flex-wrap gap-2 justify-between items-center w-full">
+
           <router-link to="/add" class="btn btn-primary btn-sm shadow-md w-full sm:w-auto">
             Add New
           </router-link>
