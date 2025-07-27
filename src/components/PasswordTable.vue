@@ -134,7 +134,7 @@ async function handleUpdatePassword(updatedData) {
 
         <!-- Responsive Table -->
         <div class="overflow-x-auto rounded-2xl shadow-lg border border-base-300 bg-base-100">
-          <table class="table table-zebra table-sm w-full min-w-[600px] text-sm">
+          <table class="table table-sm w-full min-w-[600px] text-sm">
             <thead class="bg-base-200 text-base-content">
               <tr>
                 <th class="border border-base-300 p-2 min-w-[120px]">🔗 Name</th>
@@ -148,7 +148,7 @@ async function handleUpdatePassword(updatedData) {
               <tr
                 v-for="item in paginatedPasswords"
                 :key="item.id"
-                class="hover bg-base-100 even:bg-base-200 transition-colors duration-150"
+                class="hover bg-base-100  transition-colors duration-150"
               >
                 <td class="border border-base-300 p-2 break-words">{{ item.name }}</td>
                 <td class="border border-base-300 p-2 break-words" :title="item.url">
