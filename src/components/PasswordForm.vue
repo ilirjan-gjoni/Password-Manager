@@ -73,71 +73,77 @@ function submitForm() {
 
 
 
-<template>
  
-<div class=" flex items-center justify-center bg-base-100 p-4"> 
-
-   
-    <form @submit.prevent="submitForm" class="w-full max-w-xl p-8 bg-base-200 rounded-2xl shadow-xl space-y-6">
-     <h2 class="text-3xl font-bold text-center text-base-content">🔐 Add New Password</h2>
-
-      <div>
-        <label class="label">
-          <span class="label-text text-lg font-semibold">Name</span>
-        </label>
+<template>
+  <div class="w-full max-w-md mx-auto">
+    <form @submit.prevent="handleSubmit" class="space-y-3 bg-base-100 p-4 rounded-lg shadow-md border border-base-300">
+      <!-- Name -->
+      <div class="form-control">
+        <label class="label text-sm font-medium">🔗 Name</label>
         <input
           v-model="form.name"
-          placeholder="Name"
-          class="input input-bordered input-lg w-full font-medium"
+          type="text"
+          class="input input-bordered input-sm w-full"
+          placeholder="Example: Facebook"
         />
       </div>
 
-      <div>
-        <label class="label">
-          <span class="label-text text-lg font-semibold">Website</span>
-        </label>
+      <!-- URL -->
+      <div class="form-control">
+        <label class="label text-sm font-medium">🌐 Website</label>
         <input
           v-model="form.url"
-          placeholder="Website"
-          class="input input-bordered input-lg w-full font-medium"
+          type="url"
+          class="input input-bordered input-sm w-full"
+          placeholder="https://facebook.com"
         />
       </div>
 
-      <div>
-        <label class="label">
-          <span class="label-text text-lg font-semibold">Username</span>
-        </label>
+      <!-- Username -->
+      <div class="form-control">
+        <label class="label text-sm font-medium">📧 Username</label>
         <input
           v-model="form.username"
-          placeholder="Username"
-          class="input input-bordered input-lg w-full font-medium"
+          type="text"
+          class="input input-bordered input-sm w-full"
+          placeholder="Your username or email"
         />
       </div>
 
-      <div>
-        <label class="label">
-          <span class="label-text text-lg font-semibold">Password</span>
-        </label>
+      <!-- Password -->
+      <div class="form-control">
+        <label class="label text-sm font-medium">🔒 Password</label>
         <input
           v-model="form.password"
-          placeholder="Password"
           type="password"
-          class="input input-bordered input-lg w-full font-medium"
+          class="input input-bordered input-sm w-full"
+          placeholder="••••••••"
         />
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-between gap-4 pt-4">
+      <!-- Error Message -->
+      <p v-if="errorMessage" class="text-red-500 text-sm">{{ errorMessage }}</p>
+
+      <!-- Actions -->
+      <div class="mt-4 flex justify-end gap-2">
         <button
-          type="submit"
-          :disabled="isSubmitting"
-          class="btn btn-primary btn-lg w-full font-bold"
+          type="button"
+          class="btn btn-outline btn-sm"
+          @click="$emit('cancel-edit')"
+          v-if="isEditMode"
         >
-          {{ isSubmitting ? '⏳ Saving...' : 'Add' }}
+          Cancel
         </button>
 
-       
+        <button
+          type="submit"
+          class="btn btn-primary btn-sm"
+          :disabled="isSubmitting"
+        >
+          {{ isSubmitting ? 'Saving...' : 'Save Password' }}
+        </button>
       </div>
     </form>
   </div>
-
 </template>
+
