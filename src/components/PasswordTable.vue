@@ -113,7 +113,7 @@ async function handleUpdatePassword(updatedData) {
 
 
 <template>
-  <div class="mr-[180px]">
+  <div class="px-4 sm:mr-[180px]">
     <!-- Page Content Wrapper -->
     <div class="flex justify-center bg-base-10 p-4 pt-4">
       <div class="mx-auto w-full max-w-4xl">
@@ -126,21 +126,21 @@ async function handleUpdatePassword(updatedData) {
           <input
             type="text"
             placeholder="Search passwords…"
-            class="input input-bordered input-sm max-w-xs w-full sm:w-auto"
+            class="input input-bordered input-sm w-full sm:w-auto"
             v-model="searchTerm"
           />
         </div>
 
         <!-- Responsive Table -->
         <div class="overflow-x-auto rounded-2xl shadow-lg border border-base-300 bg-base-100">
-          <table class="table table-fixed w-full text-md sm:text-sm">
+          <table class="table table-zebra table-sm w-full min-w-[600px] text-sm">
             <thead class="bg-base-200 text-base-content">
               <tr>
-                <th class="border border-base-300 p-2 w-[22%] min-w-[100px]">🔗 Name</th>
-                <th class="border border-base-300 p-2 w-[24%] min-w-[120px]">🌐 Website</th>
-                <th class="border border-base-300 p-2 w-[28%] min-w-[90px]">📧 Username</th>
-                <th class="border border-base-300 p-2 w-[28%] min-w-[90px]">🔒 Password</th>
-                <th class="border border-base-300 p-2 w-[18%] min-w-[80px]" colspan="2">⚙️ Actions</th>
+                <th class="border border-base-300 p-2 min-w-[120px]">🔗 Name</th>
+                <th class="border border-base-300 p-2 min-w-[140px]">🌐 Website</th>
+                <th class="border border-base-300 p-2 min-w-[120px]">📧 Username</th>
+                <th class="border border-base-300 p-2 min-w-[120px]">🔒 Password</th>
+                <th class="border border-base-300 p-2 min-w-[80px]" colspan="2">⚙️ Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -150,15 +150,12 @@ async function handleUpdatePassword(updatedData) {
                 class="hover bg-base-100 even:bg-base-200 transition-colors duration-150"
               >
                 <td class="border border-base-300 p-2 break-words">{{ item.name }}</td>
-                <td
-                  class="border border-base-300 p-2 break-all max-w-[130px] truncate"
-                  :title="item.url"
-                >
+                <td class="border border-base-300 p-2 break-words" :title="item.url">
                   {{ item.url }}
                 </td>
                 <td class="border border-base-300 p-2 break-words">{{ item.username }}</td>
                 <td class="border border-base-300 p-2">
-                  <span class="font-mono tracking-widest break-all">{{ item.password }}</span>
+                  <span class="font-mono break-all tracking-tight">{{ item.password }}</span>
                 </td>
                 <td class="border border-base-300 p-2">
                   <button class="btn btn-ghost btn-xs" @click="deletePassword(item.id)">
@@ -177,33 +174,31 @@ async function handleUpdatePassword(updatedData) {
               </tr>
             </tbody>
           </table>
-  
         </div>
 
-
         <!-- Pagination Bar -->
-<div class="flex justify-end mt-4">
-  <div class="join">
-    <button
-      class="join-item btn btn-sm btn-outline"
-      @click="currentPage--"
-      :disabled="currentPage === 1"
-    >
-      &lt;
-    </button>
-    <span class="join-item btn btn-sm pointer-events-none select-none bg-base-200 border-none">
-      Page {{ currentPage }}
-    </span>
-    <button
-      class="join-item btn btn-sm btn-outline"
-      @click="currentPage++"
-      :disabled="currentPage >= Math.ceil(filteredPasswords.length / itemsPerPage)"
-    >
-      &gt;
-    </button>
-  </div>
-</div>
-       
+        <div class="flex justify-end mt-4">
+          <div class="join">
+            <button
+              class="join-item btn btn-sm btn-outline"
+              @click="currentPage--"
+              :disabled="currentPage === 1"
+            >
+              &lt;
+            </button>
+            <span class="join-item btn btn-sm pointer-events-none select-none bg-base-200 border-none">
+              Page {{ currentPage }}
+            </span>
+            <button
+              class="join-item btn btn-sm btn-outline"
+              @click="currentPage++"
+              :disabled="currentPage >= Math.ceil(filteredPasswords.length / itemsPerPage)"
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
+
         <!-- Modal (Edit Form) -->
         <div v-if="selectedPassword">
           <input type="checkbox" id="edit-modal" class="modal-toggle" />
@@ -228,4 +223,3 @@ async function handleUpdatePassword(updatedData) {
     </div>
   </div>
 </template>
- 
