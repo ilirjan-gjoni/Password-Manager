@@ -35,6 +35,25 @@ import image from '@/assets/pass.png';
         <router-view />
       </main>
     </div>
+
+    <!-- Mobile Footer Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 bg-base-200 shadow-inner border-t border-base-300 flex justify-around items-center p-2 md:hidden z-40">
+      <router-link
+        to="/add"
+        class="flex flex-col items-center text-sm text-base-content hover:text-primary"
+      >
+        ➕
+        <span>Add</span>
+      </router-link>
+
+      <router-link
+        to="/list"
+        class="flex flex-col items-center text-sm text-base-content hover:text-primary"
+      >
+        📋
+        <span>List</span>
+      </router-link>
+    </div>
   </div>
 </template>
 
