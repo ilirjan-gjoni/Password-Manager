@@ -7,7 +7,7 @@ import { UserButton } from '@clerk/vue';
 </script>
 
 <template>
-    <ClerkProvider>
+   
   <div class="min-h-screen bg-base-100">
     <div class="absolute top-4 right-4">
   <UserButton />
@@ -61,6 +61,6 @@ import { UserButton } from '@clerk/vue';
       </router-link>
     </div>
   </div>
-  </ClerkProvider>
+ 
 </template>
 
