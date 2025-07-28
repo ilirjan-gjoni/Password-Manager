@@ -2,7 +2,7 @@
 import '@/assets/main.css';
 import image from '@/assets/pass.png';
 import { UserButton } from '@clerk/vue';
-import { ClerkProvider } from '@clerk/vue';
+
 
 </script>
 
