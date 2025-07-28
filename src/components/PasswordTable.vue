@@ -4,7 +4,7 @@ import { usePasswordStore } from '@/store/index.js'
 import { ref } from 'vue';
 import { defineProps } from 'vue';
 import PasswordForm from '@/components/PasswordForm.vue';
-import { computed } from 'vue';
+import { computed } from 'vue' ;
 
 const props = defineProps({
   passwords: {
