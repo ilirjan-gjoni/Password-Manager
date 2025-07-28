@@ -76,7 +76,7 @@ function submitForm() {
  
 <template>
   <div class="w-full max-w-md mx-auto">
-    <form @submit.prevent="handleSubmit" class="space-y-3 bg-base-100 p-4 rounded-lg shadow-md border border-base-300">
+    <form @submit.prevent="submitForm" class="space-y-3 bg-base-100 p-4 rounded-lg shadow-md border border-base-300">
       <!-- Name -->
       <div class="form-control">
         <label class="label text-sm font-medium">🔗 Name</label>
