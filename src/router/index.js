@@ -2,16 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { SignIn, SignUp } from '@clerk/vue';
 import { authGuard } from '@clerk/vue';
 
+const requireAuth = (to, from, next) => {
+  const { isSignedIn } = window.Clerk;
+
+  if (isSignedIn) {
+    next();
+  } else {
+    next('/sign-in');
+  }
+};
+
 const routes = [
   {
     path: '/add',
     component: () => import('@/views/AddPassword.vue'),
-    beforeEnter: authGuard
+    beforeEnter: requireAuth
   },
   {
     path: '/list',
     component: () => import('@/views/ListPasswords.vue'),
-    beforeEnter: authGuard
+    beforeEnter: requireAuth
   },
   {
     path: '/sign-in',
