@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { SignIn, SignUp } from '@clerk/vue';
-import { authGuard } from '@clerk/vue';
+
 
 const requireAuth = (to, from, next) => {
   const { isSignedIn } = window.Clerk;
@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/add'
+    redirect: '/list'
   }
 ]
 
