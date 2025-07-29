@@ -6,6 +6,10 @@ const routes = [
     component: () => import('@/views/AddPassword.vue'),
   },
   {
+    path: '/sign-in',
+    component: () => import('@/views/signin.vue'),
+  },
+  {
     path: '/list',
     component: () => import('@/views/ListPasswords.vue'),
   },
