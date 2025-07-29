@@ -1,10 +1,11 @@
 <script setup>
 import '@/assets/main.css';
 import image from '@/assets/pass.png';
-import { SignedIn, UserButton } from '@clerk/vue'
+import { SignedIn, UserButton, SignedOut } from '@clerk/vue'
 </script>
 
 <template>
+    <SignedIn>
   <div class="min-h-screen bg-base-100">
     <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
@@ -12,11 +13,11 @@ import { SignedIn, UserButton } from '@clerk/vue'
         <router-link to="/add" class="inline-block">
           <img :src="image" alt="Password Manager" class="h-12 sm:h-14" />
         </router-link>
-          <SignedIn>
+        
             <UserButton afterSignOutUrl="/sign-in" />
-          </SignedIn>
+   
      
-      </div>
+      </div >
     </div>
 
     <!-- Layout wrapper: sidebar + content -->
@@ -59,5 +60,13 @@ import { SignedIn, UserButton } from '@clerk/vue'
       </router-link>
     </div>
   </div>
+</SignedIn>
+  <SignedOut>
+      <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-x-auto">
+        <router-view />
+      </main>
+    
+  </SignedOut>
 </template>
 
