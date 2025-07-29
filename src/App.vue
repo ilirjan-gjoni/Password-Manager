@@ -8,11 +8,7 @@ import { SignedIn, UserButton } from '@clerk/vue'
 <template>
 
 
-    <SignedIn>
-    <UserButton />
-  </SignedIn>
-
-
+  
 
   <div class="min-h-screen bg-base-100">
     
@@ -23,6 +19,10 @@ import { SignedIn, UserButton } from '@clerk/vue'
         <router-link to="/add" class="inline-block">
           <img :src="image" alt="Password Manager" class="h-12 sm:h-14" />
         </router-link>
+         <!-- place it here, to the right of your logo -->
+      <SignedIn>
+      <UserButton />
+      </SignedIn>
       </div>
     </div>
 
