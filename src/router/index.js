@@ -23,7 +23,10 @@ const routes = [
     path: '/sign-up',
     component: SignUpView,
   },
- 
+ {
+  path: '/',
+  component: () => import('@/views/HomeRedirect.vue'),
+}
 ]
 
 export const router = createRouter({
