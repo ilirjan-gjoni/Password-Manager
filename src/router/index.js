@@ -23,10 +23,7 @@ const routes = [
     path: '/sign-up',
     component: SignUpView,
   },
-  {
-    path: '/',
-    redirect: '/sign-in',
-  },
+ 
 ]
 
 export const router = createRouter({
