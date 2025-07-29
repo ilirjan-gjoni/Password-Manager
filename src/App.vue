@@ -1,7 +1,7 @@
 <script setup>
 import '@/assets/main.css';
 import image from '@/assets/pass.png';
-import { SignedIn, UserButton } from '@clerk/vue'
+import { SignedIn,SignedOut, UserButton } from '@clerk/vue'
 
 </script>
 
@@ -62,5 +62,12 @@ import { SignedIn, UserButton } from '@clerk/vue'
     </div>
   </div>
   </SignedIn>
+  <SignedOut>
+       <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-x-auto">
+        <router-view />
+      </main>
+   
+  </SignedOut>
 </template>
 
