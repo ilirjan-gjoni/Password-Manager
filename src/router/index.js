@@ -1,52 +1,55 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuth } from '@clerk/vue'
 
-// Views
-import SignInView from '@/views/SignInView.vue'
-import SignUpView from '@/views/SignUpView.vue'
+// Lazy-load views
+const AddPassword = () => import('@/views/AddPassword.vue')
+const ListPasswords = () => import('@/views/ListPasswords.vue')
+const SignInView = () => import('@/views/SignInView.vue')
+const SignUpView = () => import('@/views/SignUpView.vue')
 
 const routes = [
   {
     path: '/add',
-    component: () => import('@/views/AddPassword.vue'),
-    meta: { requiresAuth: true },
+    component: AddPassword,
+    meta: { requiresAuth: true }, // ✅ Protected
   },
   {
     path: '/list',
-    component: () => import('@/views/ListPasswords.vue'),
-    meta: { requiresAuth: true },
+    component: ListPasswords,
+    meta: { requiresAuth: true }, // ✅ Protected
   },
   {
     path: '/sign-in',
-    component: SignInView,
+    component: SignInView, // 👈 Public
   },
   {
     path: '/sign-up',
-    component: SignUpView,
+    component: SignUpView, // 👈 Public
   },
   {
     path: '/',
-    redirect: '/list',
+    redirect: '/add',
   }
 ]
 
 export const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
 
-// ✅ Protect routes that require authentication
+// ✅ Route Guard for Clerk
 router.beforeEach((to) => {
   const { isLoaded, isSignedIn } = useAuth()
 
-  // Wait until Clerk has loaded the auth state
-  if (!isLoaded.value) return
+  // Wait for Clerk to load
+  if (!isLoaded.value) {
+    return false // Cancel navigation until Clerk is ready
+  }
 
-  // If route needs auth and user is not signed in, redirect to sign-in
+  // If route requires auth and user is not signed in, redirect
   if (to.meta.requiresAuth && !isSignedIn.value) {
     return { path: '/sign-in' }
   }
 
-  // Allow navigation
-  return true
+  return true // Allow navigation
 })
