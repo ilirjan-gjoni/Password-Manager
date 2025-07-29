@@ -52,7 +52,10 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/list'
+    redirect: () => {
+      const { isSignedIn } = useAuth()
+      return isSignedIn.value ? '/list' : '/sign-in'
+  }
   }
 ]
 
