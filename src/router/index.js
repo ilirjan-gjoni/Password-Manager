@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/list',
+    redirect: '/sign-in',
   },
 ]
 
