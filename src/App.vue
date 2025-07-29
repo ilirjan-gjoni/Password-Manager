@@ -1,26 +1,17 @@
 <script setup>
 import '@/assets/main.css';
 import image from '@/assets/pass.png';
-import { SignedIn,SignedOut,  UserButton } from '@clerk/vue'
 
 </script>
 
 <template>
-
-
-  
- <SignedIn>
   <div class="min-h-screen bg-base-100">
-      <!-- Sticky Full-Width Navbar -->
+    <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
       <div class="flex justify-between items-center w-full">
         <router-link to="/add" class="inline-block">
           <img :src="image" alt="Password Manager" class="h-12 sm:h-14" />
         </router-link>
-         <!-- place it here, to the right of your logo -->
-     
-      <UserButton />
-     
       </div>
     </div>
 
@@ -45,10 +36,6 @@ import { SignedIn,SignedOut,  UserButton } from '@clerk/vue'
       </main>
     </div>
 
-
-
-
-
     <!-- Mobile Footer Navigation -->
     <div class="fixed bottom-0 left-0 right-0 bg-base-200 shadow-inner border-t border-base-300 flex justify-around items-center p-2 md:hidden z-40">
       <router-link
@@ -68,15 +55,5 @@ import { SignedIn,SignedOut,  UserButton } from '@clerk/vue'
       </router-link>
     </div>
   </div>
-  </SignedIn>
-
-
-   <SignedOut>
-    <!-- you can wrap in a div for centering/styling -->
-    <div class="min-h-screen flex items-center justify-center bg-base-100">
-      <router-view />
-    </div>
-  </SignedOut>
-  
 </template>
 
