@@ -29,7 +29,7 @@ next({
   path: '/sign-in',
   query: { redirect: to.fullPath }
 })
-
+}
 
 const routes = [
   {
