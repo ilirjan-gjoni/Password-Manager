@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import PasswordForm from '@/components/PasswordForm.vue';
 import { usePasswordStore } from '@/store/index.js'
 import axios from 'axios';
+import { Protect } from '@clerk/vue'
 
 const passwordStore = usePasswordStore();
 
@@ -52,6 +53,7 @@ async function handlePasswordSubmit(submittedFormData) {
 </script>
 
 <template>
+   <Protect>
   <div>
    
     <PasswordForm @submit-password="handlePasswordSubmit" 
@@ -60,4 +62,5 @@ async function handlePasswordSubmit(submittedFormData) {
     
     <p v-if="submissionError" style="color: red;">{{ submissionError }}</p>
   </div>
+  </Protect>
 </template>

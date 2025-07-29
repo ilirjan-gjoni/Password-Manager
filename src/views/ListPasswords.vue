@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { usePasswordStore } from '../store/index.js';
 import PasswordForm from '../components/PasswordForm.vue';
-
+import { Protect } from '@clerk/vue'
 
 const passwordStore = usePasswordStore();
 const isLoading = ref(false);
@@ -39,11 +39,11 @@ onMounted(async () => {
 
 
 <template>
-
+  <Protect>
 
 <p v-if="isLoading">Loading passwords...</p>
 <p v-if="error">{{ error }}</p>
 
 <PasswordItem :passwords="passwordStore.passwords" /> 
-
+</Protect>
 </template>
