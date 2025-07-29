@@ -26,13 +26,7 @@ const routes = [
  {
   path: '/',
   component: () => import('@/views/HomeRedirect.vue'),
-},
-    {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: () => import('@/views/NotFound.vue')
-    
-  }
+}
 ]
 
 export const router = createRouter({
