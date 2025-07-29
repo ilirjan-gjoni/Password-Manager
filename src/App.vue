@@ -15,9 +15,9 @@ import { SignedIn, UserButton } from '@clerk/vue'
           <img :src="image" alt="Password Manager" class="h-12 sm:h-14" />
         </router-link>
 
-         <UserButton />
+         <UserButton afterSignOutUrl="/sign-in" />
 
-         
+
       </div>
     </div>
 
