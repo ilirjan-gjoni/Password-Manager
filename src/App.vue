@@ -6,13 +6,17 @@ import { SignedIn, UserButton } from '@clerk/vue'
 </script>
 
 <template>
-   
-  <div class="min-h-screen bg-base-100">
-    <div class="absolute top-4 right-4">
- <SignedIn>
+
+
+    <SignedIn>
     <UserButton />
   </SignedIn>
-</div>
+
+
+
+  <div class="min-h-screen bg-base-100">
+    
+
     <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
       <div class="flex justify-between items-center w-full">
