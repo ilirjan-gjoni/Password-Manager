@@ -62,12 +62,6 @@ import { SignedIn,SignedOut, UserButton } from '@clerk/vue'
     </div>
   </div>
   </SignedIn>
-  <SignedOut>
-       <!-- Main Content -->
-      <main class="flex-1 p-6 overflow-x-auto">
-        <router-view />
-      </main>
-   
-  </SignedOut>
+ 
 </template>
 
