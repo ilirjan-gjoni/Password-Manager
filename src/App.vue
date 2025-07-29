@@ -19,7 +19,7 @@ const isAuthPage = noLayoutRoutes.includes(route.path)
       <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
         <div class="flex justify-between items-center w-full">
           <router-link to="/add" class="inline-block">
-            <img src="/logo.png" alt="Password Manager" class="h-12 sm:h-14" />
+            <img src="/image.png" alt="Password Manager" class="h-12 sm:h-14" />
           </router-link>
           <SignedIn>
             <UserButton afterSignOutUrl="/sign-in" />
