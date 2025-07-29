@@ -1,8 +1,7 @@
 <script setup>
 import '@/assets/main.css';
 import image from '@/assets/pass.png';
-import { UserButton } from '@clerk/vue';
-
+import { SignedIn, UserButton } from '@clerk/vue'
 
 </script>
 
@@ -10,14 +9,9 @@ import { UserButton } from '@clerk/vue';
    
   <div class="min-h-screen bg-base-100">
     <div class="absolute top-4 right-4">
-  <header>
-    <SignedOut>
-      <SignInButton />
-    </SignedOut>
-    <SignedIn>
-      <UserButton />
-    </SignedIn>
-  </header>
+ <SignedIn>
+    <UserButton />
+  </SignedIn>
 </div>
     <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
