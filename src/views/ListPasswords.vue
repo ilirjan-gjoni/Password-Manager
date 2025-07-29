@@ -39,7 +39,7 @@ onMounted(async () => {
 
 
 <template>
-  <Protect>
+    <Protect redirectTo="/sign-in">
 
 <p v-if="isLoading">Loading passwords...</p>
 <p v-if="error">{{ error }}</p>

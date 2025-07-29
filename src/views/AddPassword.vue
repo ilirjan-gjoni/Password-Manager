@@ -53,7 +53,7 @@ async function handlePasswordSubmit(submittedFormData) {
 </script>
 
 <template>
-   <Protect>
+   <Protect redirectTo="/sign-in">
   <div>
    
     <PasswordForm @submit-password="handlePasswordSubmit" 
