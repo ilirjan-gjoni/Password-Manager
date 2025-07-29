@@ -6,7 +6,11 @@ import { SignedIn,SignedOut, UserButton } from '@clerk/vue'
 </script>
 
 <template>
-  <SignedIn>
+   <SignedIn>
+         <UserButton afterSignOutUrl="/sign-in" />
+
+     </SignedIn>
+     
   <div class="min-h-screen bg-base-100">
     <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
@@ -15,10 +19,7 @@ import { SignedIn,SignedOut, UserButton } from '@clerk/vue'
           <img :src="image" alt="Password Manager" class="h-12 sm:h-14" />
         </router-link>
 
-     
-         <UserButton afterSignOutUrl="/sign-in" />
-
-     
+    
       </div>
     </div>
 
@@ -62,7 +63,7 @@ import { SignedIn,SignedOut, UserButton } from '@clerk/vue'
       </router-link>
     </div>
   </div>
-  </SignedIn>
+  
  
 </template>
 
