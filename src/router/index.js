@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuth } from '@clerk/vue'
 
 // Lazy-load views
 const AddPassword = () => import('@/views/AddPassword.vue')
@@ -11,20 +10,20 @@ const routes = [
   {
     path: '/add',
     component: AddPassword,
-    meta: { requiresAuth: true }, // ✅ Protected
+    meta: { requiresAuth: true },
   },
   {
     path: '/list',
     component: ListPasswords,
-    meta: { requiresAuth: true }, // ✅ Protected
+    meta: { requiresAuth: true },
   },
   {
     path: '/sign-in',
-    component: SignInView, // 👈 Public
+    component: SignInView,
   },
   {
     path: '/sign-up',
-    component: SignUpView, // 👈 Public
+    component: SignUpView,
   },
   {
     path: '/',
@@ -37,19 +36,20 @@ export const router = createRouter({
   routes,
 })
 
-// ✅ Route Guard for Clerk
-router.beforeEach((to) => {
-  const { isLoaded, isSignedIn } = useAuth()
+// ✅ FIXED: delay routing until Clerk is fully loaded
+router.beforeEach(async (to, from, next) => {
+  const { isLoaded, isSignedIn } = await import('@clerk/vue').then(m => m.useAuth())
 
-  // Wait for Clerk to load
+  // Wait until Clerk finishes loading
   if (!isLoaded.value) {
-    return false // Cancel navigation until Clerk is ready
+    return next(false) // cancel navigation until ready
   }
 
-  // If route requires auth and user is not signed in, redirect
+  // Redirect to sign-in if route is protected and user is not signed in
   if (to.meta.requiresAuth && !isSignedIn.value) {
-    return { path: '/sign-in' }
+    return next('/sign-in')
   }
 
-  return true // Allow navigation
+  // All good
+  return next()
 })
