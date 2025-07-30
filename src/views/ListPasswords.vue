@@ -8,7 +8,7 @@ import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 
 const { getToken } = useAuth()
-const token = await getToken()
+
 
 const passwordStore = usePasswordStore();
 const isLoading = ref(false);
@@ -16,7 +16,7 @@ const error = ref(null);
 
 
 onMounted(async () => {
-    
+    const token = await getToken()
   try {
     isLoading.value = true;
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {

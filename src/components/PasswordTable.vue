@@ -8,7 +8,7 @@ import { computed } from 'vue' ;
 import { useAuth } from '@clerk/vue'
 
 const { getToken } = useAuth()
-const token = await getToken()
+
 
 const props = defineProps({
   passwords: {
@@ -51,6 +51,8 @@ const passwordStore = usePasswordStore();
 
 
 async function deletePassword(id) {
+
+  const token = await getToken()
   //console.log('Delete ID:', id);   testing
    try {
     await axios.delete(
@@ -77,6 +79,8 @@ function editPassword(item) {
 }
 
 async function handleUpdatePassword(updatedData) {
+
+  const token = await getToken()
   try {
     // 1. Send update to Supabase
     await axios.patch(

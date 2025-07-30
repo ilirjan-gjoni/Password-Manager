@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 const { getToken } = useAuth()
-const token = await getToken()
+
 
 const passwordStore = usePasswordStore();
 
@@ -25,6 +25,7 @@ async function handlePasswordSubmit(submittedFormData) {
   return;
 }
 
+const token = await getToken()
 
 
   isSubmitting.value = true;
