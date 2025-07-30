@@ -25,13 +25,14 @@ async function handlePasswordSubmit(submittedFormData) {
   return;
 }
 
-const token = await getToken()
+
 
 
   isSubmitting.value = true;
   submissionError.value = '';
 
   try {
+    const token = await getToken()
     const { data } = await axios.post(
       import.meta.env.VITE_SUPABASE_URL,
       submittedFormData,

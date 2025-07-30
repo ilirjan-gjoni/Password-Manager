@@ -16,9 +16,10 @@ const error = ref(null);
 
 
 onMounted(async () => {
-    const token = await getToken()
+    
   try {
     isLoading.value = true;
+    const token = await getToken()
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {
       headers: {
         'Authorization': `Bearer ${token}`,

@@ -52,9 +52,10 @@ const passwordStore = usePasswordStore();
 
 async function deletePassword(id) {
 
-  const token = await getToken()
+  
   //console.log('Delete ID:', id);   testing
    try {
+    const token = await getToken()
     await axios.delete(
       `${import.meta.env.VITE_SUPABASE_URL}?id=eq.${id}`,
       {
@@ -80,8 +81,9 @@ function editPassword(item) {
 
 async function handleUpdatePassword(updatedData) {
 
-  const token = await getToken()
+ 
   try {
+     const token = await getToken()
     // 1. Send update to Supabase
     await axios.patch(
       `${import.meta.env.VITE_SUPABASE_URL}?id=eq.${updatedData.id}`,
