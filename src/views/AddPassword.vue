@@ -5,7 +5,10 @@ import { usePasswordStore } from '@/store/index.js'
 import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
-const { getToken } = useAuth()
+
+//const { getToken } = useAuth()
+const auth = useAuth()
+const getToken = auth.getToken
 
 
 const passwordStore = usePasswordStore();
