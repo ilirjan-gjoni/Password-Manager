@@ -20,7 +20,7 @@ const resetFormTrigger = ref(0);
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
    const token = await getToken(); // ✅ Right here inside the async function
-
+console.log('JWT token:', token); 
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
   submissionError.value = 'All fields are required.';
