@@ -8,7 +8,7 @@ import { useAuth } from '@clerk/vue'
 
 //const { getToken } = useAuth()
 const auth = useAuth()
-const getToken = auth.getToken
+
 
 
 const passwordStore = usePasswordStore();
@@ -21,7 +21,7 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
-
+  const token = await auth.getToken()
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
   submissionError.value = 'All fields are required.';
@@ -35,7 +35,7 @@ async function handlePasswordSubmit(submittedFormData) {
   submissionError.value = '';
 
   try {
-    const token = await getToken()
+    
     const { data } = await axios.post(
       import.meta.env.VITE_SUPABASE_URL,
       submittedFormData,
