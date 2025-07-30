@@ -8,10 +8,6 @@ import { useAuth } from '@clerk/vue'
 
 const { getToken } = useAuth(); // ✅ At top level — gives you access to the method
 
-async function myCustomFunction() {
-  const token = await getToken();
-  // use the token here
-}
 
 const passwordStore = usePasswordStore();
 
@@ -23,7 +19,7 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
-  
+    const token = await getToken(); 
 
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
