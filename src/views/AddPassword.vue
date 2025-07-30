@@ -21,12 +21,12 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
-  const token = await auth.getToken()
+ 
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
   submissionError.value = 'All fields are required.';
   return;
-}
+  }
 
 
 
@@ -35,6 +35,19 @@ async function handlePasswordSubmit(submittedFormData) {
   submissionError.value = '';
 
   try {
+
+    if (!auth.isLoaded.value) {
+      console.error('Clerk not loaded yet')
+      submissionError.value = 'Authentication not ready. Please wait...'
+      return
+    }
+
+    // ✅ Get Clerk token
+    const token = await auth.getToken()
+    console.log('TOKEN:', token)
+
+    // ✅ Debug submitted data
+    console.log('Submitted form:', submittedFormData)
     
     const { data } = await axios.post(
       import.meta.env.VITE_SUPABASE_URL,
