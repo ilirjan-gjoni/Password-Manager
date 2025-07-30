@@ -8,8 +8,8 @@ import { useAuth } from '@clerk/vue'
 
 const { getToken } = useAuth(); // ✅ At top level — gives you access to the method
 
- const token = getToken.value();
- 
+ const token = getToken.value;
+
 const passwordStore = usePasswordStore();
 
 // Loading and error states
