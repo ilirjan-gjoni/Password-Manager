@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 
-const auth = useAuth();
+const { getToken } = useAuth(); // ✅ At top level — gives you access to the method
 
 
 const passwordStore = usePasswordStore();
@@ -19,7 +19,7 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
-  const token = await auth.getToken();
+   const token = await getToken(); // ✅ Right here inside the async function
 
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
