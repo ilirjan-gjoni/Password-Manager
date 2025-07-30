@@ -42,7 +42,7 @@ async function handlePasswordSubmit(submittedFormData) {
       {
         headers: {
           'apikey': import.meta.env.VITE_SUPABASE_API_KEY ,
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
           'Content-Type': 'application/json',
           'Prefer': 'return=representation'
         }
