@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 
-
+const { getToken } = useAuth()
 
 
 const passwordStore = usePasswordStore();
@@ -19,7 +19,8 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
- 
+   const token = await getToken(); // ✅ Correct usage
+
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
   submissionError.value = 'All fields are required.';
@@ -42,7 +43,7 @@ async function handlePasswordSubmit(submittedFormData) {
       {
         headers: {
           'apikey': import.meta.env.VITE_SUPABASE_API_KEY ,
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Prefer': 'return=representation'
         }
