@@ -22,7 +22,7 @@ onMounted(async () => {
    
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+        'Authorization': `Bearer ${eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDExMUFBQSIsImtpZCI6Imluc18zMFV5WFdDTnpkN0drWk5XZVVEeUVZa1VYdlciLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwczovL3d3dy5wYXNzbWFuYWdlci5zaXRlIiwiZXhwIjoxNzUzODk2ODg0LCJmdmEiOlswLC0xXSwiaWF0IjoxNzUzODk2ODI0LCJpc3MiOiJodHRwczovL2NsZXJrLnBhc3NtYW5hZ2VyLnNpdGUiLCJuYmYiOjE3NTM4OTY4MTQsInJvbGUiOiJhdXRoZW50aWNhdGVkIiwic2lkIjoic2Vzc18zMGJXYlQzODk1aWdNemZjd29jbVhPSThSMnoiLCJzdWIiOiJ1c2VyXzMwYjFmWmpwWXRaQXd2aWhvWkp1TEhEeWExTCIsInYiOjJ9.tldA0ZfuKds-j6e3WIOEvQ-piHKkJxoy0vyTYoQy76ezJq4TVTUZonfsLieNsP0Egxd2HgOR4ScBwrXGAxLhT8i8pMHFpKprSb5MUbSJTuxVPXQi3KfJSCd7fYXVpd4_4UTEt86u_240TzPE2uhv3hpsCU3FOX9EN9y-JUDHnwfNGtS7SSmf_YNn5RMxpgpHoYlkKn-DKtyAMMR6zc8pKzX9UQot9ZyIVQjBUbcPwaEkkQcqfcUwkgptQ7EB-HytU9AmoLmAj4jwBBxcfYi7x9AxuwQn5wxommTG0oYZSKHlhb4r5TClpPpuYHN2N4raXuKGcetAICXJ6jrKEmpzYg}`,
         'apikey': import.meta.env.VITE_SUPABASE_API_KEY
       }
     });
