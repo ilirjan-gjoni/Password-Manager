@@ -5,6 +5,10 @@ import axios from 'axios';
 import { usePasswordStore } from '../store/index.js';
 import PasswordForm from '../components/PasswordForm.vue';
 import { Protect } from '@clerk/vue'
+import { useAuth } from '@clerk/vue'
+
+const { getToken } = useAuth()
+const token = await getToken()
 
 const passwordStore = usePasswordStore();
 const isLoading = ref(false);
@@ -17,7 +21,7 @@ onMounted(async () => {
     isLoading.value = true;
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+        'Authorization': `Bearer ${token}`,
         'apikey': import.meta.env.VITE_SUPABASE_API_KEY
       }
     });

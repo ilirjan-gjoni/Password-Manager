@@ -5,6 +5,10 @@ import { ref } from 'vue';
 import { defineProps } from 'vue';
 import PasswordForm from '@/components/PasswordForm.vue';
 import { computed } from 'vue' ;
+import { useAuth } from '@clerk/vue'
+
+const { getToken } = useAuth()
+const token = await getToken()
 
 const props = defineProps({
   passwords: {
@@ -54,7 +58,7 @@ async function deletePassword(id) {
       {
         headers: {
           apikey: import.meta.env.VITE_SUPABASE_API_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          Authorization: `Bearer ${token}`,
         }
       }
     );
@@ -86,7 +90,7 @@ async function handleUpdatePassword(updatedData) {
       {
         headers: {
           apikey: import.meta.env.VITE_SUPABASE_API_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       }

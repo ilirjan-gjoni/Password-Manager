@@ -4,6 +4,9 @@ import PasswordForm from '@/components/PasswordForm.vue';
 import { usePasswordStore } from '@/store/index.js'
 import axios from 'axios';
 import { Protect } from '@clerk/vue'
+import { useAuth } from '@clerk/vue'
+const { getToken } = useAuth()
+const token = await getToken()
 
 const passwordStore = usePasswordStore();
 
@@ -34,7 +37,7 @@ async function handlePasswordSubmit(submittedFormData) {
       {
         headers: {
           'apikey': import.meta.env.VITE_SUPABASE_API_KEY,
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Prefer': 'return=representation'
         }
