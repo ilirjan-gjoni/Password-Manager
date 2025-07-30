@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 
-const { getToken } = useAuth()
+const auth = useAuth();
 
 
 const passwordStore = usePasswordStore();
@@ -19,7 +19,7 @@ const resetFormTrigger = ref(0);
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
-   const token = await getToken(); // ✅ Correct usage
+  const token = await auth.getToken();
 
   if ( !submittedFormData.name || !submittedFormData.url || !submittedFormData.username || !submittedFormData.password  ) {
      
