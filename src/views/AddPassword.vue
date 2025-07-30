@@ -8,7 +8,10 @@ import { useAuth } from '@clerk/vue'
 
 const { getToken } = useAuth(); // ✅ At top level — gives you access to the method
 
- const token = getToken.value;
+async function myCustomFunction() {
+  const token = await getToken();
+  // use the token here
+}
 
 const passwordStore = usePasswordStore();
 
