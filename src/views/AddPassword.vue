@@ -6,8 +6,6 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 import { useAuth } from '@clerk/vue'
 
-//const { getToken } = useAuth()
-const auth = useAuth()
 
 
 
@@ -36,18 +34,7 @@ async function handlePasswordSubmit(submittedFormData) {
 
   try {
 
-    if (!auth.isLoaded.value) {
-      console.error('Clerk not loaded yet')
-      submissionError.value = 'Authentication not ready. Please wait...'
-      return
-    }
-
-    // ✅ Get Clerk token
-    const token = await auth.getToken()
-    console.log('TOKEN:', token)
-
-    // ✅ Debug submitted data
-    console.log('Submitted form:', submittedFormData)
+    
     
     const { data } = await axios.post(
       import.meta.env.VITE_SUPABASE_URL,
