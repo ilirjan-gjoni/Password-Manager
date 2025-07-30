@@ -19,7 +19,7 @@ onMounted(async () => {
     
   try {
     isLoading.value = true;
-    const token = await getToken()
+    const token = await getToken({ template: 'supabase' })
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {
       headers: {
         'Authorization': `Bearer ${token}`,
