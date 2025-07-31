@@ -16,16 +16,16 @@ onMounted(async () => {
 })
 
 const submitForm = async () => {
-  console.log('isLoaded:', isLoaded)
-  console.log('isSignedIn:', isSignedIn)
+  console.log('isLoaded:', isLoaded.value)
+  console.log('isSignedIn:', isSignedIn.value)
 
-  if (!isSignedIn) {
+  if (!isSignedIn.value) {
     message.value = 'You must be signed in.'
     return
   }
 
   const token = await getToken()
-  console.log('JWT Token (submitForm):', token)
+  console.log('JWT Token:', token)
 
   try {
     const { data } = await axios.post(
@@ -33,7 +33,7 @@ const submitForm = async () => {
       { test: text.value },
       {
         headers: {
-          apikey: 'your-public-supabase-key', // Replace with your real key
+          apikey: 'your-public-supabase-key',
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
@@ -48,6 +48,7 @@ const submitForm = async () => {
     console.error('POST error:', err)
   }
 }
+
 </script>
 
 <template>
