@@ -7,7 +7,8 @@ import PasswordForm from '@/components/PasswordForm.vue';
 import { computed } from 'vue' ;
 import { useAuth } from '@clerk/vue'
 
-const { getToken } = useAuth()
+// ✅ Get Clerk token function and auth state
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 
 const props = defineProps({
@@ -52,10 +53,20 @@ const passwordStore = usePasswordStore();
 
 async function deletePassword(id) {
 
+ console.log('isLoaded:', isLoaded.value)
+ console.log('isSignedIn:', isSignedIn.value)
+
+  if (!isSignedIn.value) {
+    message.value = 'You must be signed in.'
+    return
+  }
+
+  const token = await getToken.value()
+  console.log('JWT Token:', token)
   
   //console.log('Delete ID:', id);   testing
    try {
-    const token = await getToken()
+    
     await axios.delete(
       `${import.meta.env.VITE_SUPABASE_URL}?id=eq.${id}`,
       {
@@ -80,10 +91,19 @@ function editPassword(item) {
 }
 
 async function handleUpdatePassword(updatedData) {
+ console.log('isLoaded:', isLoaded.value)
+ console.log('isSignedIn:', isSignedIn.value)
 
+  if (!isSignedIn.value) {
+    message.value = 'You must be signed in.'
+    return
+  }
+
+  const token = await getToken.value()
+  console.log('JWT Token:', token)
  
   try {
-     const token = await getToken()
+     
     // 1. Send update to Supabase
     await axios.patch(
       `${import.meta.env.VITE_SUPABASE_URL}?id=eq.${updatedData.id}`,
