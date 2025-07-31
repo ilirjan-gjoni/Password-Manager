@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useAuth } from '@clerk/vue'
 
 const text = ref('')
 const message = ref('')
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 const submitForm = async () => {
   if (!text.value) {
@@ -12,18 +14,21 @@ const submitForm = async () => {
   }
 
   try {
+    const token = await getToken()
+
     const { data } = await axios.post(
-     'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
-      [{ test: text.value }],
+      'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
+      { test: text.value },
       {
         headers: {
-          apikey: import.meta.env.VITE_SUPABASE_API_KEY,
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          apikey: 'your-public-supabase-key', // still required
+          Authorization: `Bearer ${token}`,   // Clerk JWT token
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
         }
       }
     )
+
     message.value = 'Saved!'
     text.value = ''
   } catch (err) {
@@ -38,7 +43,7 @@ const submitForm = async () => {
       <input
         v-model="text"
         type="text"
-        placeholder="Enter text"
+        placeholder="Enter test data"
         class="input input-bordered w-full"
       />
       <button type="submit" class="btn btn-primary w-full">Submit</button>
