@@ -13,7 +13,7 @@ const submitForm = async () => {
 
   try {
     const { data } = await axios.post(
-     `${import.meta.env.VITE_SUPABASE_URL}/test`,
+     'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
       [{ text: text.value }],
       {
         headers: {
