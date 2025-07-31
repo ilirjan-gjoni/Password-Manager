@@ -1,12 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useAuth } from '@clerk/vue'
 
 const text = ref('')
 const message = ref('')
 
-const { getToken, isLoaded, isSignedIn } = useAuth()  // ✅ FIXED
+// ✅ getToken must come from useAuth()
+const { getToken, isLoaded, isSignedIn } = useAuth()
+
+// ✅ Check the token on component mount
+onMounted(async () => {
+  const token = await getToken()
+  console.log('Clerk JWT (onMounted):', token)
+})
 
 const submitForm = async () => {
   console.log('isLoaded:', isLoaded)
@@ -18,7 +25,7 @@ const submitForm = async () => {
   }
 
   const token = await getToken()
-  console.log('JWT Token:', token)
+  console.log('JWT Token (submitForm):', token)
 
   try {
     const { data } = await axios.post(
@@ -26,8 +33,8 @@ const submitForm = async () => {
       { test: text.value },
       {
         headers: {
-          apikey: 'your-public-supabase-key', // required
-          Authorization: `Bearer ${token}`,   // ✅ Clerk token
+          apikey: 'your-public-supabase-key', // Replace with your real key
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
         }
@@ -38,11 +45,10 @@ const submitForm = async () => {
     text.value = ''
   } catch (err) {
     message.value = 'Error: ' + err.message
+    console.error('POST error:', err)
   }
 }
 </script>
-
-
 
 <template>
   <div class="max-w-md mx-auto p-4">
@@ -58,3 +64,4 @@ const submitForm = async () => {
     </form>
   </div>
 </template>
+
