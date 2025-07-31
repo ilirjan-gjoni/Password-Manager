@@ -5,13 +5,10 @@ const AddPassword = () => import('@/views/AddPassword.vue')
 const ListPasswords = () => import('@/views/ListPasswords.vue')
 const SignInView = () => import('@/views/SignInView.vue')
 const SignUpView = () => import('@/views/SignUpView.vue')
-const test = () => import('@/views/testform.vue')
+
 
 const routes = [
-   {
-    path: '/test',
-    component: test, // ⛔️ Use <Protect> inside component
-  },
+
   {
     path: '/add',
     component: AddPassword, // ⛔️ Use <Protect> inside component

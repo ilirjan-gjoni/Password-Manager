@@ -5,9 +5,10 @@ import axios from 'axios';
 import { usePasswordStore } from '../store/index.js';
 import PasswordForm from '../components/PasswordForm.vue';
 import { Protect } from '@clerk/vue'
+import { useAuth } from '@clerk/vue'
 
-
-
+// ✅ Get Clerk token function and auth state
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 
 const passwordStore = usePasswordStore();
@@ -16,13 +17,23 @@ const error = ref(null);
 
 
 onMounted(async () => {
-    
+  console.log('isLoaded:', isLoaded.value)
+  console.log('isSignedIn:', isSignedIn.value)
+
+  if (!isSignedIn.value) {
+    message.value = 'You must be signed in.'
+    return
+  }
+
+  const token = await getToken.value()
+  console.log('JWT Token:', token)
+
   try {
     isLoading.value = true;
    
     const response = await axios.get(import.meta.env.VITE_SUPABASE_URL, {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+        'Authorization': `Bearer ${token}`,
         'apikey': import.meta.env.VITE_SUPABASE_API_KEY
       }
     });
