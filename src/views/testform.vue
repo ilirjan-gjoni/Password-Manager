@@ -5,7 +5,7 @@ import { useAuth } from '@clerk/vue'
 
 const text = ref('')
 const message = ref('')
-const { getToken, isLoaded, isSignedIn } = useAuth()
+const { isLoaded, session, isSignedIn } = useSession()
 
 const submitForm = async () => {
   if (!text.value) {
@@ -14,7 +14,7 @@ const submitForm = async () => {
   }
 
   try {
-    const token = await getToken.value()
+    const token =  session.getToken()
 
     const { data } = await axios.post(
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
