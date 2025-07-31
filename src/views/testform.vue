@@ -9,8 +9,10 @@ const { getToken, isLoaded, isSignedIn } = useAuth()
 
 const submitForm = async () => {
 
-  const token = await getToken.value()
-
+console.log('isLoaded:', isLoaded)
+console.log('isSignedIn:', isSignedIn)
+const token = await getToken();
+console.log('JWT Token:', token)
   
    try {
 
