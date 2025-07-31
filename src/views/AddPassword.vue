@@ -15,7 +15,8 @@ const isSubmitting = ref(false);
 const submissionError = ref('');
 const resetFormTrigger = ref(0);
 
-
+// ✅ Get Clerk token function and auth state
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
@@ -25,18 +26,9 @@ async function handlePasswordSubmit(submittedFormData) {
      
   submissionError.value = 'All fields are required.';
   return;
+   
   }
-
-
-// ✅ Get Clerk token function and auth state
-const { getToken, isLoaded, isSignedIn } = useAuth()
-
-  isSubmitting.value = true;
-  submissionError.value = '';
-
-  try {
-
-      // ✅ 1. Check if user is signed in and auth state is loaded
+   // ✅ 1. Check if user is signed in and auth state is loaded
     if (!isLoaded.value) {
       // If auth state isn't loaded yet, wait or show a loading indicator
       submissionError.value = 'Authentication state not loaded yet. Please wait.';
@@ -48,6 +40,15 @@ const { getToken, isLoaded, isSignedIn } = useAuth()
       submissionError.value = 'You must be signed in to save passwords.';
       return;
     }
+
+
+
+  isSubmitting.value = true;
+  submissionError.value = '';
+
+  try {
+
+  
 
     // ✅ 2. Get Clerk JWT token
     // The default strategy is 'session', which is typically what you need for backend APIs.
