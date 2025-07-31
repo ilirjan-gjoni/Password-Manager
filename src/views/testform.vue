@@ -14,7 +14,7 @@ const submitForm = async () => {
   }
 
   try {
-    const token = await getToken()
+    const token = await getToken.value()
 
     const { data } = await axios.post(
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
