@@ -15,7 +15,7 @@ const submitForm = async () => {
     return
   }
 
-  const token = await getToken.value()
+  const token = await getToken()
   console.log('JWT Token:', token)
 
   try {
