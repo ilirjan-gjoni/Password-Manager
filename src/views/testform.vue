@@ -13,11 +13,11 @@ const submitForm = async () => {
 
   try {
     const { data } = await axios.post(
-      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_URL2,
       [{ text: text.value }],
       {
         headers: {
-          apikey: import.meta.env.VITE_SUPABASE_API_KEY2,
+          apikey: import.meta.env.VITE_SUPABASE_API_KEY,
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
