@@ -15,7 +15,7 @@ const submitForm = async () => {
     return
   }
 
-  const token = await getToken()
+  const token = await getToken.value()
   console.log('JWT Token:', token)
 
   try {
@@ -23,11 +23,11 @@ const submitForm = async () => {
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
       { test: text.value },
       {
-        headers: {
-          apikey: 'your-public-supabase-key',
-          Authorization: `Bearer ${token}`,
+       headers: {
+          'apikey': import.meta.env.VITE_SUPABASE_API_KEY ,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
-          Prefer: 'return=representation'
+          'Prefer': 'return=representation'
         }
       }
     )
