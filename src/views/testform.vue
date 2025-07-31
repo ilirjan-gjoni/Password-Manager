@@ -5,16 +5,17 @@ import { useAuth } from '@clerk/vue'
 
 const text = ref('')
 const message = ref('')
-const { isLoaded, session, isSignedIn } = useSession()
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 const submitForm = async () => {
   if (!text.value) {
     message.value = 'Text is required.'
     return
   }
+  const token = await getToken.value()
 
   try {
-    const token =  session.getToken()
+   
 
     const { data } = await axios.post(
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
