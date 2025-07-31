@@ -28,19 +28,17 @@ async function handlePasswordSubmit(submittedFormData) {
   return;
    
   }
-   // ✅ 1. Check if user is signed in and auth state is loaded
-    if (!isLoaded.value) {
-      // If auth state isn't loaded yet, wait or show a loading indicator
-      submissionError.value = 'Authentication state not loaded yet. Please wait.';
-      return;
-    }
+  
+console.log('isLoaded:', isLoaded.value)
+  console.log('isSignedIn:', isSignedIn.value)
 
-    if (!isSignedIn.value) {
-      // User is not signed in, they can't make authenticated requests
-      submissionError.value = 'You must be signed in to save passwords.';
-      return;
-    }
+  if (!isSignedIn.value) {
+    message.value = 'You must be signed in.'
+    return
+  }
 
+  const token = await getToken.value()
+  console.log('JWT Token:', token)
 
 
   isSubmitting.value = true;
@@ -50,15 +48,7 @@ async function handlePasswordSubmit(submittedFormData) {
 
   
 
-    // ✅ 2. Get Clerk JWT token
-    // The default strategy is 'session', which is typically what you need for backend APIs.
-    const token = await getToken();
-
-    if (!token) {
-      // This should ideally not happen if isSignedIn.value is true, but good for robustness
-      throw new Error('Could not retrieve authentication token. Please try signing in again.');
-    }
-    
+  
     const { data } = await axios.post(
       import.meta.env.VITE_SUPABASE_URL,
       submittedFormData,
