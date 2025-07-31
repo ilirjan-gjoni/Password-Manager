@@ -8,14 +8,11 @@ const message = ref('')
 const { getToken, isLoaded, isSignedIn } = useAuth()
 
 const submitForm = async () => {
-  if (!text.value) {
-    message.value = 'Text is required.'
-    return
-  }
+
   const token = await getToken.value()
 
-  try {
-   
+  
+   try {
 
     const { data } = await axios.post(
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
