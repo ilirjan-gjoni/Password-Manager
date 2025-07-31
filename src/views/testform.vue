@@ -10,9 +10,7 @@ const { getToken, isSignedIn } = useAuth()
 
 onMounted(async () => {
   const token = await getToken()
-  console.log('JWT Token:', token)
-
-  // Inject Clerk token into Supabase client
+  console.log('Token (onMounted):', token)
   supabase.auth.setAuth(token)
 })
 
@@ -25,12 +23,10 @@ const submitForm = async () => {
   const token = await getToken()
   supabase.auth.setAuth(token)
 
-  const { data, error } = await supabase
-    .from('test')
-    .insert({ test: text.value })
+  const { data, error } = await supabase.from('test').insert({ test: text.value })
 
   if (error) {
-    console.error(error)
+    console.error('Insert error:', error)
     message.value = 'Error: ' + error.message
   } else {
     message.value = 'Saved!'
