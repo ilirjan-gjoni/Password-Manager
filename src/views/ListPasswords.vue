@@ -5,7 +5,7 @@ import axios from 'axios';
 import { usePasswordStore } from '../store/index.js';
 import PasswordForm from '../components/PasswordForm.vue';
 import { Protect } from '@clerk/vue'
-import { useAuth } from '@clerk/vue'
+
 
 
 

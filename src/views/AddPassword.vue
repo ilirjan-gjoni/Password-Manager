@@ -4,8 +4,8 @@ import PasswordForm from '@/components/PasswordForm.vue';
 import { usePasswordStore } from '@/store/index.js'
 import axios from 'axios';
 import { Protect } from '@clerk/vue'
-
-
+// ✅ Clerk Auth composable
+import { useAuth } from '@clerk/vue'
 
 
 const passwordStore = usePasswordStore();
@@ -15,6 +15,8 @@ const isSubmitting = ref(false);
 const submissionError = ref('');
 const resetFormTrigger = ref(0);
 
+// ✅ Get Clerk token function and auth state
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
@@ -34,6 +36,14 @@ async function handlePasswordSubmit(submittedFormData) {
 
   try {
 
+     // ✅ 1. Check if user is signed in
+    if (!isLoaded.value || !isSignedIn.value) {
+      throw new Error('User not signed in with Clerk.')
+    }
+
+    // ✅ 2. Get Clerk JWT token
+    const token = await getToken()
+
     
     
     const { data } = await axios.post(
@@ -42,7 +52,7 @@ async function handlePasswordSubmit(submittedFormData) {
       {
         headers: {
           'apikey': import.meta.env.VITE_SUPABASE_API_KEY ,
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'Prefer': 'return=representation'
         }
