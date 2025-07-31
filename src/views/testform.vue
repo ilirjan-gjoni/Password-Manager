@@ -1,36 +1,42 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import axios from 'axios'
 import { useAuth } from '@clerk/vue'
-import { supabase } from '@/lib/supabase'
-
+const { getToken, isLoaded, isSignedIn } = useAuth()
 const text = ref('')
 const message = ref('')
 
-const { getToken, isSignedIn } = useAuth()
-
-onMounted(async () => {
-  const token = await getToken()
-  console.log('Token (onMounted):', token)
-  supabase.auth.setAuth(token)
-})
-
 const submitForm = async () => {
+  console.log('isLoaded:', isLoaded.value)
+  console.log('isSignedIn:', isSignedIn.value)
+
   if (!isSignedIn.value) {
     message.value = 'You must be signed in.'
     return
   }
 
-  const token = await getToken()
-  supabase.auth.setAuth(token)
+  const token = await getToken.value()
+  console.log('JWT Token:', token)
 
-  const { data, error } = await supabase.from('test').insert({ test: text.value })
+  try {
+    const { data } = await axios.post(
+      'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
+      { test: text.value },
+      {
+        headers: {
+          apikey: 'your-public-supabase-key',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation'
+        }
+      }
+    )
 
-  if (error) {
-    console.error('Insert error:', error)
-    message.value = 'Error: ' + error.message
-  } else {
     message.value = 'Saved!'
     text.value = ''
+  } catch (err) {
+    message.value = 'Error: ' + err.message
+    console.error('POST error:', err)
   }
 }
 </script>
@@ -41,7 +47,7 @@ const submitForm = async () => {
       <input
         v-model="text"
         type="text"
-        placeholder="Enter test data"
+        placeholder="Enter text"
         class="input input-bordered w-full"
       />
       <button type="submit" class="btn btn-primary w-full">Submit</button>
