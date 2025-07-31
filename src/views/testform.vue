@@ -17,7 +17,7 @@ const submitForm = async () => {
       [{ text: text.value }],
       {
         headers: {
-          apikey: import.meta.env.VITE_SUPABASE_API_KEY,
+          apikey: import.meta.env.VITE_SUPABASE_API_KEY2,
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_API_KEY}`,
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
