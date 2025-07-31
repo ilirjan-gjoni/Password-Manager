@@ -5,24 +5,29 @@ import { useAuth } from '@clerk/vue'
 
 const text = ref('')
 const message = ref('')
-const { getToken, isLoaded, isSignedIn } = useAuth()
+
+const { getToken, isLoaded, isSignedIn } = useAuth()  // ✅ FIXED
 
 const submitForm = async () => {
+  console.log('isLoaded:', isLoaded)
+  console.log('isSignedIn:', isSignedIn)
 
-console.log('isLoaded:', isLoaded)
-console.log('isSignedIn:', isSignedIn)
-const token = await getToken();
-console.log('JWT Token:', token)
-  
-   try {
+  if (!isSignedIn) {
+    message.value = 'You must be signed in.'
+    return
+  }
 
+  const token = await getToken()
+  console.log('JWT Token:', token)
+
+  try {
     const { data } = await axios.post(
       'https://dwndlxjomryejopkicnj.supabase.co/rest/v1/test',
       { test: text.value },
       {
         headers: {
-          apikey: 'your-public-supabase-key', // still required
-          Authorization: `Bearer ${token}`,   // Clerk JWT token
+          apikey: 'your-public-supabase-key', // required
+          Authorization: `Bearer ${token}`,   // ✅ Clerk token
           'Content-Type': 'application/json',
           Prefer: 'return=representation'
         }
@@ -36,6 +41,8 @@ console.log('JWT Token:', token)
   }
 }
 </script>
+
+
 
 <template>
   <div class="max-w-md mx-auto p-4">
