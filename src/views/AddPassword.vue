@@ -15,8 +15,7 @@ const isSubmitting = ref(false);
 const submissionError = ref('');
 const resetFormTrigger = ref(0);
 
-// ✅ Get Clerk token function and auth state
-const { getToken, isLoaded, isSignedIn } = useAuth()
+
 
 // Handle submitted data from PasswordForm.vue
 async function handlePasswordSubmit(submittedFormData) {
@@ -29,7 +28,8 @@ async function handlePasswordSubmit(submittedFormData) {
   }
 
 
-
+// ✅ Get Clerk token function and auth state
+const { getToken, isLoaded, isSignedIn } = useAuth()
 
   isSubmitting.value = true;
   submissionError.value = '';
