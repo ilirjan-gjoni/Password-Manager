@@ -57,7 +57,12 @@ onMounted(async () => {
 <template>
     <Protect redirectTo="/sign-in">
 
-<p v-if="isLoading">Loading passwords...</p>
+
+<div v-if="isLoading" class="flex flex-col items-center justify-center h-screen">
+  
+  <p class="text-lg font-semibold text-gray-700">⌛</p>
+</div>
+
 <p v-if="error">{{ error }}</p>
 
 <PasswordItem :passwords="passwordStore.passwords" /> 
