@@ -19,5 +19,5 @@ onMounted(() => {
 
 <template>
   <!-- Optional: add loading spinner here -->
-  <p>Redirecting...</p>
+  <!--  <p>Redirecting...</p> -->
 </template>
