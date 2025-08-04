@@ -6,7 +6,7 @@ import { SignedIn, UserButton, SignedOut } from '@clerk/vue'
 
 <template>
     <SignedIn>
-  <div class="min-h-screen overflow-x-hidden overflow-y-hidden bg-base-100">
+  <div class="max-h-screen overflow-x-hidden overflow-y-hidden bg-base-100">
     <!-- Sticky Full-Width Navbar -->
     <div class="sticky top-0 z-50 w-full navbar bg-base-200 shadow-md px-4 sm:px-6">
       <div class="flex justify-between items-center w-full">
