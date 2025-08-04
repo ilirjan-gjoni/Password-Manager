@@ -23,7 +23,7 @@ import { SignedIn, UserButton, SignedOut } from '@clerk/vue'
     <!-- Layout wrapper: sidebar + content -->
     <div class="flex">
       <!-- Sidebar (Desktop Only) -->
-      <aside class="w-55 bg-base-200 min-h-screen p-4 space-y-4 shadow-inner hidden md:block">
+      <aside class="w-56 bg-base-200 min-h-screen p-4 space-y-4 shadow-inner hidden md:block">
         <ul class="menu">
           <li>
             <router-link to="/add" class="font-medium">➕ Add Password</router-link>
