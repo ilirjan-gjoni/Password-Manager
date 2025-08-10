@@ -6,6 +6,9 @@ import axios from 'axios';
 import { Protect } from '@clerk/vue'
 // ✅ Clerk Auth composable
 import { useAuth } from '@clerk/vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 
 const passwordStore = usePasswordStore();
@@ -64,6 +67,9 @@ console.log('isLoaded:', isLoaded.value)
     console.log('Password saved:', data);
     passwordStore.addPassword(data[0]);
     resetFormTrigger.value++;
+   // ✅ Redirect to table after successful save
+    router.push('/list');
+   
   } catch (error) {
     console.error('Failed to save password:', error);
     submissionError.value = 'Failed to save password. Please try again.';
