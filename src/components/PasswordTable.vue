@@ -199,9 +199,8 @@ async function handleUpdatePassword(updatedData) {
                 <td class="border border-base-300 p-2 break-words">{{ item.username }}</td>
                 <td class="border border-base-300 p-2">
                   <span class="font-mono break-all tracking-tight">{{ item.password }}</span>
-                  <button @click="copyPassword(row.password)">Copy</button>
-
                 </td>
+                <button class="btn btn-ghost btn-xs ml-2" @click="copyPassword(item.password)">c</button>
                 <td class="border border-base-300 p-2">
                   <button class="btn btn-ghost btn-xs" @click="deletePassword(item.id)">
                     🗑️
