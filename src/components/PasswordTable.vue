@@ -7,6 +7,7 @@ import PasswordForm from '@/components/PasswordForm.vue';
 import { computed } from 'vue' ;
 import { useAuth } from '@clerk/vue'
 import useClipboard from 'vue-clipboard3'
+import label from 'daisyui/components/label';
 
 const { toClipboard } = useClipboard()
 
@@ -238,9 +239,9 @@ async function handleUpdatePassword(updatedData) {
                       
                     </li>
                     <li>
-                    <button @click="deletePassword(item.id)">
+                    <label @click="deletePassword(item.id)">
                       🗑️ Delete
-                    </button>
+                    </label>
                     </li>
                   </ul>
                 </div>
