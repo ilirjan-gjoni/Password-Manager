@@ -223,6 +223,37 @@ async function handleUpdatePassword(updatedData) {
                     ✏️
                   </label>
                 </td>
+
+                <td class="border border-base-300 p-2 text-right">
+  <div class="dropdown dropdown-end inline-block">
+    <!-- Kebab (three dots) button -->
+    <button
+      class="btn btn-ghost btn-xs"
+      tabindex="0"
+      aria-label="Open actions menu"
+    >
+      ⋮
+    </button>
+
+    <!-- The small action panel -->
+    <ul
+      tabindex="0"
+      class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-36"
+    >
+      <li>
+        <button @click="editPassword(item)">
+          ✏️ Edit
+        </button>
+      </li>
+      <li>
+        <button @click="deletePassword(item.id)">
+          🗑️ Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</td>
+
               </tr>
             </tbody>
           </table>
