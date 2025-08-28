@@ -231,7 +231,7 @@ async function handleUpdatePassword(updatedData) {
                     <li>
                       <label
                       for="edit-modal"
-                      class="btn btn-ghost btn-xs"
+                   
                       @click="editPassword(item)">
                       
                      ✏️ Edit
