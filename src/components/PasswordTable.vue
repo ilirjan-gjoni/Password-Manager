@@ -228,14 +228,18 @@ async function handleUpdatePassword(updatedData) {
                     class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-36"
                   >
                     <li>
-                      <button @click="editPassword(item)">
-                        ✏️ Edit
+                       <button @click="deletePassword(item.id)">
+                        🗑️ Delete
                       </button>
                     </li>
                     <li>
-                      <button @click="deletePassword(item.id)">
-                        🗑️ Delete
-                      </button>
+                        <label
+                      for="edit-modal"
+                      class="btn btn-ghost btn-xs"
+                      @click="editPassword(item)">
+                      
+                    ✏️ Edit
+                  </label>
                     </li>
                   </ul>
                 </div>
