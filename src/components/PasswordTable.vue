@@ -184,7 +184,7 @@ async function handleUpdatePassword(updatedData) {
                 <th class="border border-base-300 p-2 min-w-[140px]">🌐 Website</th>
                 <th class="border border-base-300 p-2 min-w-[120px]">📧 Username</th>
                 <th class="border border-base-300 p-2 min-w-[120px]">🔒 Password</th>
-                <th class="border border-base-300 p-2 min-w-[80px]" colspan="2">⚙️</th>
+                <th class="border border-base-300 p-2 min-w-[10px]" >⚙️</th>
               </tr>
             </thead>
             <tbody>
